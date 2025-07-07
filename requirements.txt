@@ -1,0 +1,12 @@
+Django==5.2.4
+tensorflow==2.19.0
+fastapi==0.115.14
+uvicorn==0.35.0
+python-multipart==0.0.20
+pillow==11.2.1
+tensorflow-serving-api==2.5.0
+matplotlib==3.10.3
+numpy==1.26.4
+pydantic>=2.0
+starlette>=0.36.0
+typing-extensions>=4.0
