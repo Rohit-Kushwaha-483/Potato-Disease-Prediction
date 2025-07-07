@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Disease Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-green-100 font-sans text-gray-800">
+
+    <!-- Main container -->
+    <div class="min-h-screen flex items-center justify-center px-4 py-12">
+        <div class="w-full sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-xl rounded-xl p-8 space-y-6 ring-1 ring-gray-300">
+
+            <!-- Title -->
+            <h1 class="text-3xl font-semibold text-center text-indigo-600">Potato Disease Prediction</h1>
+
+            <!-- Form -->
+            <form method="post" enctype="multipart/form-data" class="space-y-4">
+                {% csrf_token %}
+                
+                <!-- Image Upload Section -->
+                <div>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Upload a Potato Leaf Image</label>
+                    <input type="file" name="image" id="image" class="mt-1 block w-full text-sm text-gray-900 border-gray-300 rounded-xl shadow-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 ease-in-out">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full py-2 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:bg-gradient-to-l hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    Predict
+                </button>
+            </form>
+
+            <!-- Display uploaded image -->
+            {% if image_url %}
+            <div class="mt-6 text-center">
+                <h3 class="text-lg font-medium text-gray-800">Uploaded Image:</h3>
+                <img src="{{ image_url }}" alt="Uploaded Leaf" class="mt-4 mx-auto rounded-xl shadow-lg max-w-full sm:max-w-xs border-4 border-indigo-300">
+            </div>
+            {% endif %}
+            
+            <!-- Prediction result (Initially hidden) -->
+            {% if result %}
+            <div id="result-section" class="text-center bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-semibold">Prediction: {{ result.class }}</h3>
+                <p class="mt-2 text-lg font-medium">Confidence: {{ result.confidence }}%</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
